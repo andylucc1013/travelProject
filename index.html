@@ -6,16 +6,15 @@
     <title>福岡跨年詳盡行程 2025-26</title>
     <style>
         :root {
-            /* 配色系統：日系簡約 + 功能導向 */
-            --primary: #2c3e50;       /* 主文字：深藍灰 */
-            --secondary: #596275;     /* 次要文字 */
-            --bg-color: #f5f6fa;      /* 背景：極淺灰 */
+            --primary: #2c3e50;
+            --secondary: #596275;
+            --bg-color: #f5f6fa;
             --card-bg: #ffffff;
             
-            --accent-blue: #3498db;   /* 交通/資訊 */
-            --accent-red: #e74c3c;    /* 重要/警告/美食 */
-            --accent-green: #27ae60;  /* 營業時間/狀態 */
-            --accent-gold: #f39c12;   /* 特別提示 */
+            --accent-blue: #3498db;
+            --accent-red: #e74c3c;
+            --accent-green: #27ae60;
+            --accent-gold: #f39c12;
             
             --nav-bg: rgba(255, 255, 255, 0.98);
             --border-radius: 12px;
@@ -53,19 +52,22 @@
             color: var(--primary);
         }
 
+        /* Real-time Countdown Style */
         .countdown {
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: var(--accent-blue);
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 8px;
             background: rgba(52, 152, 219, 0.1);
             display: inline-block;
-            padding: 2px 12px;
+            padding: 4px 16px;
             border-radius: 20px;
             left: 50%;
             position: relative;
             transform: translateX(-50%);
+            font-variant-numeric: tabular-nums; /* 防止數字跳動時寬度改變 */
+            border: 1px solid rgba(52, 152, 219, 0.2);
         }
 
         .days-nav {
@@ -97,7 +99,6 @@
             transform: translateY(-1px);
         }
 
-        /* Content Structure */
         .container {
             margin-top: 130px;
             padding: 0 16px;
@@ -122,7 +123,6 @@
         .date-header .date { font-size: 0.9rem; color: var(--secondary); font-weight: 700; letter-spacing: 1px; }
         .date-header .title { font-size: 1.6rem; font-weight: 900; margin: 0; color: var(--primary); }
 
-        /* Timeline */
         .timeline {
             list-style: none;
             padding: 0;
@@ -160,13 +160,12 @@
             z-index: 2;
         }
 
-        /* Event Type Colors */
         .event.flight:before { border-color: var(--accent-blue); }
         .event.food:before { border-color: var(--accent-red); }
         .event.hotel:before { border-color: #8e44ad; }
         .event.train:before { border-color: #27ae60; }
+        .event.shopping:before { border-color: #f39c12; }
 
-        /* Card Design */
         .card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
@@ -194,7 +193,6 @@
             line-height: 1.3;
         }
 
-        /* Detail List */
         .detail-list {
             margin: 0;
             padding: 0;
@@ -217,7 +215,6 @@
             font-weight: bold;
         }
 
-        /* Address Row */
         .address-row {
             margin-top: 10px;
             padding-top: 10px;
@@ -249,7 +246,6 @@
         }
         .map-btn:active { transform: scale(0.95); }
 
-        /* Note Box */
         .note-box {
             background: #fff8e1;
             border-left: 4px solid var(--accent-gold);
@@ -273,6 +269,7 @@
         }
         .tag.important { background: rgba(231, 76, 60, 0.1); color: var(--accent-red); }
         .tag.info { background: rgba(52, 152, 219, 0.1); color: var(--accent-blue); }
+        .tag.ok { background: rgba(39, 174, 96, 0.1); color: var(--accent-green); }
 
     </style>
 </head>
@@ -311,7 +308,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">福岡県福岡市博多区青木739</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=福岡機場國際線航廈" target="_blank" class="map-btn">📍 導航機場</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Fukuoka+Airport+International+Terminal" target="_blank" class="map-btn">📍 導航機場</a>
                     </div>
                 </div>
             </li>
@@ -330,7 +327,7 @@
                     </div>
                     <div class="address-row">
                         <span class="address-text">博多駅中央街1-1 (筑紫口附近)</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=JR博多站綠色窗口" target="_blank" class="map-btn">📍 導航窗口</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=JR+Hakata+Station+Green+Window" target="_blank" class="map-btn">📍 導航窗口</a>
                     </div>
                 </div>
             </li>
@@ -345,7 +342,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">博多駅前3-21-4</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Prince+Smart+Inn+Hakata" target="_blank" class="map-btn">📍 導航飯店</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Prince+Smart+Inn+Hakata" target="_blank" class="map-btn">📍 導航飯店</a>
                     </div>
                 </div>
             </li>
@@ -361,7 +358,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">博多駅南1-2-18 エムビル 1F</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Nikuya+Nikuichi+Hakataten" target="_blank" class="map-btn">📍 導航餐廳</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Nikuya+Nikuichi+Hakataten" target="_blank" class="map-btn">📍 導航餐廳</a>
                     </div>
                 </div>
             </li>
@@ -377,7 +374,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">JR博多城 9F</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Campbell+Early+Hakata" target="_blank" class="map-btn">📍 導航甜點</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Campbell+Early+Hakata" target="_blank" class="map-btn">📍 導航甜點</a>
                     </div>
                 </div>
             </li>
@@ -422,7 +419,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">長崎県佐世保市ハウステンボス町1-1</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Huis+Ten+Bosch" target="_blank" class="map-btn">📍 導航園區</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Huis+Ten+Bosch" target="_blank" class="map-btn">📍 導航園區</a>
                     </div>
                 </div>
             </li>
@@ -449,7 +446,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">櫛田神社 (博多総鎮守)</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Kushida+Shrine+Fukuoka" target="_blank" class="map-btn">📍 導航櫛田</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Kushida+Shrine+Fukuoka" target="_blank" class="map-btn">📍 導航櫛田</a>
                     </div>
                 </div>
             </li>
@@ -484,7 +481,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">太宰府市宰府4-7-1</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Dazaifu+Tenmangu" target="_blank" class="map-btn">📍 導航天滿宮</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Dazaifu+Tenmangu" target="_blank" class="map-btn">📍 導航天滿宮</a>
                     </div>
                 </div>
             </li>
@@ -499,7 +496,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">太宰府市宰府2-7-12</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Tenzan+Dazaifu" target="_blank" class="map-btn">📍 導航天山</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Tenzan+Dazaifu" target="_blank" class="map-btn">📍 導航天山</a>
                     </div>
                 </div>
             </li>
@@ -532,8 +529,8 @@
                         <li class="detail-item">地點：岩田屋、Parco、博多運河城</li>
                     </ul>
                     <div class="address-row">
-                        <span class="address-text">岩田屋本店</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Iwataya+Headquarters" target="_blank" class="map-btn">📍 導航岩田屋</a>
+                        <span class="address-text">岩田屋本店 (福岡天神)</span>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Iwataya+Honten" target="_blank" class="map-btn">📍 導航岩田屋</a>
                     </div>
                 </div>
             </li>
@@ -548,7 +545,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">中央区今泉1-22-21</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Itoking+Tenjin" target="_blank" class="map-btn">📍 導航伊都</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Itoking+Tenjin" target="_blank" class="map-btn">📍 導航伊都</a>
                     </div>
                 </div>
             </li>
@@ -559,16 +556,33 @@
                     <div class="card-title">晚餐：大衆ホルモン肉力屋 今泉店</div>
                     <ul class="detail-list">
                         <li class="detail-item">平價好吃的內臟燒肉店</li>
-                        <li class="detail-item">晚餐後可步行至附近買獺祭梅酒</li>
+                        <li class="detail-item">地址：中央区今泉1-17-22 1F</li>
                     </ul>
-                    <div class="note-box">
-                        <strong>🍶 獺祭購買點：</strong>
-                        1. 獺祭 Store 福岡店 (岩田屋 B2F)<br>
-                        2. 獺祭天神 Store (路面店)
-                    </div>
                     <div class="address-row">
-                        <span class="address-text">中央区今泉1-17-22 1F</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Taishu+Horumon+Nikuryokuya+Imaizumi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                        <span class="address-text">中央区今泉1-17-22</span>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Taishu+Horumon+Nikuryokuya+Imaizumi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event shopping">
+                <div class="time-badge">Shopping</div>
+                <div class="card">
+                    <div class="card-title">🍶 購買獺祭梅酒</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><strong>1. 獺祭 Store 福岡 (岩田屋 B2F)</strong></li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">天神2-5-35 岩田屋B2F</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Dassai+Store+Fukuoka+Iwataya" target="_blank" class="map-btn">📍 岩田屋店</a>
+                    </div>
+                    
+                    <ul class="detail-list" style="margin-top:15px;">
+                         <li class="detail-item"><strong>2. 獺祭 天神 Store (路面店)</strong></li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">天神2-6-26 (サザンビル1F)</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Dassai+Tenjin+Store" target="_blank" class="map-btn">📍 天神路面店</a>
                     </div>
                 </div>
             </li>
@@ -584,14 +598,15 @@
             <li class="event">
                 <div class="time-badge">09:30</div>
                 <div class="card">
-                    <div class="card-title">寄放行李</div>
+                    <div class="card-title">寄放行李 (已預約 7-11)</div>
                     <ul class="detail-list">
-                        <li class="detail-item">首選：JR 博多站內置物櫃 (較順路)</li>
-                        <li class="detail-item">備案：7-11 博多站前朝日大樓店 (需預約 Ecbo Cloak)</li>
+                        <li class="detail-item"><span class="tag ok">✅ 已預約</span> Ecbo Cloak</li>
+                        <li class="detail-item">地點：7-11 博多站前朝日大樓店</li>
+                        <li class="detail-item">備註：請準備好手機顯示預約畫面</li>
                     </ul>
                     <div class="address-row">
-                        <span class="address-text">JR博多站</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Hakata+Station" target="_blank" class="map-btn">📍 導航車站</a>
+                        <span class="address-text">博多駅前2-1-1</span>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=7-Eleven+Hakata+Ekimae+Asahi+Building" target="_blank" class="map-btn">📍 導航 7-11</a>
                     </div>
                 </div>
             </li>
@@ -619,7 +634,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">湯布院町川上1503-3</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Floral+Village" target="_blank" class="map-btn">📍 導航童話村</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Yufuin+Floral+Village" target="_blank" class="map-btn">📍 導航童話村</a>
                     </div>
                 </div>
             </li>
@@ -634,7 +649,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">Lamp no Yado</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Lamp+no+Yado" target="_blank" class="map-btn">📍 導航飯店</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Yufuin+Lamp+no+Yado" target="_blank" class="map-btn">📍 導航飯店</a>
                     </div>
                 </div>
             </li>
@@ -656,7 +671,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">金鱗湖</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Kinrin+Lake" target="_blank" class="map-btn">📍 導航金鱗湖</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Kinrin+Lake" target="_blank" class="map-btn">📍 導航金鱗湖</a>
                     </div>
                 </div>
             </li>
@@ -689,8 +704,22 @@
                     <div class="card-title">回程：由布院之森 4號</div>
                     <ul class="detail-list">
                         <li class="detail-item"><span class="tag info">座位</span> Car 3, 11A, 11B</li>
-                        <li class="detail-item">18:00 抵達博多站，領回寄放行李</li>
+                        <li class="detail-item">18:00 抵達博多站</li>
                     </ul>
+                </div>
+            </li>
+
+             <li class="event">
+                <div class="time-badge">18:15</div>
+                <div class="card">
+                    <div class="card-title">取回行李 (7-11)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">前往 7-11 博多站前朝日大樓店取回行李</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">博多駅前2-1-1</span>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=7-Eleven+Hakata+Ekimae+Asahi+Building" target="_blank" class="map-btn">📍 導航 7-11</a>
+                    </div>
                 </div>
             </li>
 
@@ -703,7 +732,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">中央区今泉1-22-14</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="map-btn">📍 導航飯店</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="map-btn">📍 導航飯店</a>
                     </div>
                 </div>
             </li>
@@ -718,7 +747,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">中央区今泉1-21-2</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Kawaya+Imaizumi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Kawaya+Imaizumi" target="_blank" class="map-btn">📍 導航餐廳</a>
                     </div>
                 </div>
             </li>
@@ -741,7 +770,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">博多区祇園町9-3</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=The+Full+Full+Hakata" target="_blank" class="map-btn">📍 導航麵包</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=The+Full+Full+Hakata" target="_blank" class="map-btn">📍 導航麵包</a>
                     </div>
                 </div>
             </li>
@@ -766,7 +795,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">中央区六本松2-3-13</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Robatano+Itookashi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Robatano+Itookashi" target="_blank" class="map-btn">📍 導航餐廳</a>
                     </div>
                 </div>
             </li>
@@ -781,7 +810,7 @@
                     </ul>
                     <div class="address-row">
                         <span class="address-text">中央区六本松4-2-1</span>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Ropponmatsu+421" target="_blank" class="map-btn">📍 導航書店</a>
+                        <a href="http://googleusercontent.com/maps.google.com/?q=Ropponmatsu+421" target="_blank" class="map-btn">📍 導航書店</a>
                     </div>
                 </div>
             </li>
@@ -836,21 +865,28 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Countdown Logic
+    // Real-time Countdown Logic
     function updateCountdown() {
         const tripStart = new Date("2025-12-30T14:15:00").getTime();
         const now = new Date().getTime();
         const distance = tripStart - now;
 
         if (distance < 0) {
-            document.getElementById("countdown").innerHTML = "旅程進行中 / 已結束";
+            document.getElementById("countdown").innerHTML = "旅程進行中 ✈️";
             return;
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
-        document.getElementById("countdown").innerHTML = `⏰ 倒數 ${days} 天 ${hours} 小時`;
+        // Pad numbers with leading zeros for consistency
+        const fHours = hours.toString().padStart(2, '0');
+        const fMinutes = minutes.toString().padStart(2, '0');
+        const fSeconds = seconds.toString().padStart(2, '0');
+
+        document.getElementById("countdown").innerHTML = `⏰ 倒數 ${days}天 ${fHours}時 ${fMinutes}分 ${fSeconds}秒`;
     }
 
     setInterval(updateCountdown, 1000);
