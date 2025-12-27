@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>福岡跨年之旅 2025-26</title>
+    <title>福岡跨年詳盡行程 2025-26</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #FF5E57;
-            --bg: #F2F4F8;
+            /* 配色系統：日系簡約 + 功能導向 */
+            --primary: #2c3e50;       /* 主文字：深藍灰 */
+            --secondary: #596275;     /* 次要文字 */
+            --bg-color: #f5f6fa;      /* 背景：極淺灰 */
             --card-bg: #ffffff;
-            --timeline: #575fcf;
-            --nav-bg: rgba(255, 255, 255, 0.95);
+            
+            --accent-blue: #3498db;   /* 交通/資訊 */
+            --accent-red: #e74c3c;    /* 重要/警告/美食 */
+            --accent-green: #27ae60;  /* 營業時間/狀態 */
+            --accent-gold: #f39c12;   /* 特別提示 */
+            
+            --nav-bg: rgba(255, 255, 255, 0.98);
+            --border-radius: 12px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            padding-bottom: 80px;
+            padding-bottom: 120px;
+            background-color: var(--bg-color);
+            color: var(--primary);
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -34,22 +42,37 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 10px 0;
+            padding: 10px 0 5px 0;
         }
 
         .header-title {
             text-align: center;
             font-size: 1.1rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             color: var(--primary);
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 8px;
+            background: rgba(52, 152, 219, 0.1);
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
         }
 
         .days-nav {
             display: flex;
             overflow-x: auto;
-            padding: 0 15px;
-            gap: 10px;
+            padding: 5px 15px 10px 15px;
+            gap: 8px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
@@ -57,111 +80,52 @@
 
         .day-tab {
             flex: 0 0 auto;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
             font-weight: 600;
-            background: #eee;
-            color: #888;
+            background: #dfe4ea;
+            color: #7f8c8d;
             border: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.2s ease;
         }
 
         .day-tab.active {
-            background: var(--timeline);
+            background: var(--primary);
             color: white;
-            box-shadow: 0 4px 12px rgba(87, 95, 207, 0.4);
-            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(44, 62, 80, 0.2);
+            transform: translateY(-1px);
         }
 
-        /* Main Content Area */
+        /* Content Structure */
         .container {
-            margin-top: 100px;
+            margin-top: 130px;
             padding: 0 16px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Day Content Sections */
-        .day-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        .day-content.active {
-            display: block;
-        }
-
+        .day-content { display: none; animation: fadeIn 0.4s ease; }
+        .day-content.active { display: block; }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero Image Card */
-        .hero-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        .date-header {
             margin-bottom: 24px;
+            border-left: 5px solid var(--accent-red);
+            padding-left: 12px;
         }
+        .date-header .date { font-size: 0.9rem; color: var(--secondary); font-weight: 700; letter-spacing: 1px; }
+        .date-header .title { font-size: 1.6rem; font-weight: 900; margin: 0; color: var(--primary); }
 
-        .hero-img-container {
-            width: 100%;
-            height: 180px;
-            background: #ddd;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: opacity 0.3s;
-        }
-        
-        /* 圖片載入失敗時的備用樣式 */
-        .hero-img.error {
-            display: none;
-        }
-        .hero-fallback {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-        }
-
-        .day-header {
-            padding: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .day-date {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .day-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 5px 0 0 0;
-            line-height: 1.3;
-        }
-
-        /* Timeline Styles */
+        /* Timeline */
         .timeline {
             list-style: none;
-            padding: 20px;
+            padding: 0;
             margin: 0;
             position: relative;
         }
@@ -169,113 +133,154 @@
         .timeline:before {
             content: '';
             position: absolute;
-            top: 25px;
-            bottom: 25px;
-            left: 28px;
+            top: 15px;
+            bottom: 30px;
+            left: 14px;
             width: 2px;
-            background: #eef2f5;
+            background: #dcdde1;
+            z-index: 0;
         }
 
         .event {
             position: relative;
-            padding-left: 45px;
-            margin-bottom: 28px;
+            padding-left: 35px;
+            margin-bottom: 30px;
         }
-
-        .event:last-child { margin-bottom: 0; }
 
         .event:before {
             content: '';
             position: absolute;
-            left: 21px;
-            top: 6px;
-            width: 16px;
-            height: 16px;
+            left: 9px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: var(--card-bg);
-            border: 3px solid var(--timeline);
+            border: 3px solid var(--secondary);
             z-index: 2;
         }
 
-        .event.hotel:before { border-color: #be2edd; }
-        .event.flight:before { border-color: #ffbe76; }
-        .event.food:before { border-color: #ff5e57; }
+        /* Event Type Colors */
+        .event.flight:before { border-color: var(--accent-blue); }
+        .event.food:before { border-color: var(--accent-red); }
+        .event.hotel:before { border-color: #8e44ad; }
+        .event.train:before { border-color: #27ae60; }
 
-        .time {
+        /* Card Design */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .time-badge {
             font-size: 0.8rem;
-            color: #95a5a6;
             font-weight: 700;
-            display: block;
-            margin-bottom: 4px;
+            color: var(--secondary);
+            background: #f1f2f6;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 8px;
         }
 
-        .activity {
+        .card-title {
+            font-size: 1.2rem;
             font-weight: 700;
-            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+
+        /* Detail List */
+        .detail-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .detail-item {
+            position: relative;
+            padding-left: 18px;
             margin-bottom: 6px;
-            color: #2d3436;
+            font-size: 0.95rem;
+            color: var(--secondary);
         }
 
-        .tag-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 6px;
+        .detail-item:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
         }
+
+        /* Address Row */
+        .address-row {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .address-text {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            flex: 1;
+        }
+
+        .map-btn {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .map-btn:active { transform: scale(0.95); }
+
+        /* Note Box */
+        .note-box {
+            background: #fff8e1;
+            border-left: 4px solid var(--accent-gold);
+            padding: 10px;
+            margin-top: 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #d35400;
+        }
+        
+        .note-box strong { display: block; margin-bottom: 4px; }
 
         .tag {
             font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: #f1f2f6;
-            color: #57606f;
-            font-weight: 500;
-        }
-        
-        .tag.alert { background: #ffeaa7; color: #d35400; }
-
-        .details-box {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 12px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #636e72;
-            border-left: 3px solid #ddd;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: var(--timeline);
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            border-radius: 50px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            margin-right: 5px;
             font-weight: 600;
-            box-shadow: 0 4px 10px rgba(87, 95, 207, 0.3);
-            transition: transform 0.2s;
         }
-        .btn:active { transform: scale(0.96); }
-        .btn i { margin-right: 6px; font-style: normal; }
+        .tag.important { background: rgba(231, 76, 60, 0.1); color: var(--accent-red); }
+        .tag.info { background: rgba(52, 152, 219, 0.1); color: var(--accent-blue); }
 
-        .btn.hotel { background-color: #be2edd; box-shadow: 0 4px 10px rgba(190, 46, 221, 0.3); }
-        .btn.food { background-color: #ff5e57; box-shadow: 0 4px 10px rgba(255, 94, 87, 0.3); }
-
-        .trip-summary {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: #b2bec3;
-        }
     </style>
 </head>
 <body>
 
 <div class="nav-container">
-    <div class="header-title">🇯🇵 福岡跨年 2025</div>
+    <div class="header-title">Fukuoka Trip 2025-26 🇯🇵</div>
+    <div class="countdown" id="countdown">載入中...</div>
     <div class="days-nav">
         <button class="day-tab active" onclick="switchDay(1)">Day 1</button>
         <button class="day-tab" onclick="switchDay(2)">Day 2</button>
@@ -290,223 +295,530 @@
 <div class="container">
 
     <div id="day1" class="day-content active">
-        <div class="hero-card">
-            <div class="hero-img-container">
-                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Airport" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">Fukuoka ✈️</div>
-            </div>
-            <div class="day-header">
-                <div class="day-date">12/30 (一)</div>
-                <h2 class="day-title">出發福岡 ✈️</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event flight">
-                    <span class="time">14:15 - 17:30</span>
-                    <div class="activity">TPE ➝ FUK (CI 0128)</div>
-                    <div class="tag-row">
-                        <span class="tag alert">預計 18:30 取完行李</span>
-                    </div>
-                </li>
-                <li class="event">
-                    <span class="time">18:30 - 19:00</span>
-                    <div class="activity">前往博多住宿</div>
-                    <div class="details-box">
-                        🚕 計程車約 15 分<br>
-                        🚇 地鐵機場線約 15 分
-                    </div>
-                </li>
-                <li class="event hotel">
-                    <span class="time">19:00</span>
-                    <div class="activity">Prince Smart Inn Hakata</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Prince+Smart+Inn+Hakata" target="_blank" class="btn hotel"><i>📍</i> 導航飯店</a>
-                </li>
-                <li class="event food">
-                    <span class="time">20:00 (預約)</span>
-                    <div class="activity">Nikuya Nikuichi 燒肉</div>
-                    <div class="tag-row"><span class="tag">走路12分</span></div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Nikuya+Nikuichi+Hakataten" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">12/30 (二)</div>
+            <h2 class="title">抵達與安頓 ✈️</h2>
         </div>
+        <ul class="timeline">
+            <li class="event flight">
+                <div class="time-badge">14:15 - 17:30</div>
+                <div class="card">
+                    <div class="card-title">桃園 T2 ➝ 福岡 (CI 0128)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">班機：China Airlines CI 0128</li>
+                        <li class="detail-item">預計 18:30 領完行李出關</li>
+                        <li class="detail-item">交通：建議搭計程車 (約20分/¥2000) 或 地鐵機場線 (約15分) 直達博多站。</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">福岡県福岡市博多区青木739</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=福岡機場國際線航廈" target="_blank" class="map-btn">📍 導航機場</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event train">
+                <div class="time-badge">19:00</div>
+                <div class="card">
+                    <div class="card-title">JR 博多站 綠色窗口</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">目標：兌換九州 JR Pass</li>
+                        <li class="detail-item">領取：豪斯登堡、由布院 來回指定席車票</li>
+                    </ul>
+                    <div class="note-box">
+                        <strong>⚠️ 決策點：</strong>
+                        如果排隊人潮過多(超過30分鐘)，建議先去飯店 Check-in，改在「Day 2 早上 07:00」再來換票。
+                    </div>
+                    <div class="address-row">
+                        <span class="address-text">博多駅中央街1-1 (筑紫口附近)</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=JR博多站綠色窗口" target="_blank" class="map-btn">📍 導航窗口</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event hotel">
+                <div class="time-badge">19:30</div>
+                <div class="card">
+                    <div class="card-title">Check-in: Prince Smart Inn</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">從博多站步行約 5-8 分鐘</li>
+                        <li class="detail-item">自助 Check-in 機台操作</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">博多駅前3-21-4</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Prince+Smart+Inn+Hakata" target="_blank" class="map-btn">📍 導航飯店</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">20:00 (已預約)</div>
+                <div class="card">
+                    <div class="card-title">晚餐：肉屋 肉いち 博多店</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><span class="tag important">預約</span> 20:00 入席</li>
+                        <li class="detail-item">限時：90 分鐘</li>
+                        <li class="detail-item">備註：高CP值黑毛和牛燒肉</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">博多駅南1-2-18 エムビル 1F</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Nikuya+Nikuichi+Hakataten" target="_blank" class="map-btn">📍 導航餐廳</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">21:30</div>
+                <div class="card">
+                    <div class="card-title">🍓 飯後甜點：Campbell Early</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">位置：JR博多城 (AMU Plaza) 9F</li>
+                        <li class="detail-item">推薦：博多甜王草莓聖代</li>
+                        <li class="detail-item">營業至 22:00 (最後點餐 21:30)</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">JR博多城 9F</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Campbell+Early+Hakata" target="_blank" class="map-btn">📍 導航甜點</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="day2" class="day-content">
-        <div class="hero-card">
-            <div class="hero-img-container">
-                <img src="https://images.unsplash.com/photo-1498931299472-f7a63a029766?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Fireworks" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);">Huis Ten Bosch 🎆</div>
-            </div>
-            <div class="day-header">
-                <div class="day-date">12/31 (二)</div>
-                <h2 class="day-title">豪斯登堡跨年 🎆</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event">
-                    <span class="time">10:31 - 12:23</span>
-                    <div class="activity">前往豪斯登堡</div>
-                    <div class="details-box">JR綠 / 豪斯登堡號 (約2hr)</div>
-                </li>
-                <li class="event">
-                    <span class="time">12:30 - 19:50</span>
-                    <div class="activity">園區一日遊</div>
-                </li>
-                <li class="event">
-                    <span class="time">19:59 - 21:50</span>
-                    <div class="activity">回程巴士</div>
-                    <div class="tag-row"><span class="tag">回博多/天神</span></div>
-                </li>
-                <li class="event">
-                    <span class="time">Late Night</span>
-                    <div class="activity">跨年參拜 🙏</div>
-                    <div class="details-box">櫛田神社、萬行寺、住吉神社</div>
-                    <a href="https://yunamirulife.blogspot.com/2020/12/blog-post_24.html" target="_blank" class="btn"><i>🔗</i> 參考網誌</a>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">12/31 (三)</div>
+            <h2 class="title">豪斯登堡跨年 🎆</h2>
         </div>
+        <ul class="timeline">
+            <li class="event">
+                <div class="time-badge">07:30 (備案)</div>
+                <div class="card">
+                    <div class="card-title">備用換票時間</div>
+                    <div class="detail-list">
+                        若昨晚沒換票，請務必此時前往博多站綠色窗口。
+                    </div>
+                </div>
+            </li>
+
+            <li class="event train">
+                <div class="time-badge">10:31 - 12:23</div>
+                <div class="card">
+                    <div class="card-title">前往豪斯登堡</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><span class="tag info">列車</span> Huis Ten Bosch 19</li>
+                        <li class="detail-item"><span class="tag info">座位</span> Car 3, 17C, 17D</li>
+                        <li class="detail-item">車程：約 1小時52分</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">12:30 - 18:30</div>
+                <div class="card">
+                    <div class="card-title">豪斯登堡園區</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">午餐：園區內隨意吃</li>
+                        <li class="detail-item">重點：歐風建築、鬱金香、夜景燈飾</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">長崎県佐世保市ハウステンボス町1-1</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Huis+Ten+Bosch" target="_blank" class="map-btn">📍 導航園區</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event train">
+                <div class="time-badge">18:48 - 20:35</div>
+                <div class="card">
+                    <div class="card-title">回程：特急豪斯登堡 30號</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">豪斯登堡發 ➝ 博多著</li>
+                        <li class="detail-item">備註：此班為直達車，無須轉乘，可在車上休息補眠。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">21:30</div>
+                <div class="card">
+                    <div class="card-title">跨年三社參拜</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">1. <strong>住吉神社</strong>：感受莊嚴氣氛</li>
+                        <li class="detail-item">2. <strong>萬行寺</strong>：路過參拜</li>
+                        <li class="detail-item">3. <strong>櫛田神社</strong>：最熱鬧，有屋台美食，一起倒數！</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">櫛田神社 (博多総鎮守)</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kushida+Shrine+Fukuoka" target="_blank" class="map-btn">📍 導航櫛田</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="day3" class="day-content">
-        <div class="hero-card">
-            <div class="hero-img-container">
-                <img src="https://images.unsplash.com/photo-1596545731776-353d1000b213?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Temple" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">Dazaifu ⛩️</div>
-            </div>
-            <div class="day-header">
-                <div class="day-date">01/01 (三)</div>
-                <h2 class="day-title">太宰府新年參拜 ⛩️</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event">
-                    <span class="time">Morning</span>
-                    <div class="activity">睡飽吃早餐</div>
-                </li>
-                <li class="event">
-                    <span class="time">Afternoon</span>
-                    <div class="activity">太宰府天滿宮</div>
-                    <div class="details-box">新年人潮眾多，注意保暖</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Dazaifu+Tenmangu" target="_blank" class="btn"><i>📍</i> 導航太宰府</a>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">01/01 (四)</div>
+            <h2 class="title">太宰府初詣 🙏</h2>
         </div>
+        <ul class="timeline">
+            <li class="event train">
+                <div class="time-badge">09:00</div>
+                <div class="card">
+                    <div class="card-title">前往太宰府</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">路線：博多 ➝ 地鐵 ➝ 天神</li>
+                        <li class="detail-item">轉乘：西鐵福岡(天神)站 ➝ 西鐵太宰府線</li>
+                        <li class="detail-item">備註：初詣人潮眾多，請預留排隊時間。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">10:00</div>
+                <div class="card">
+                    <div class="card-title">太宰府天滿宮</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">參拜重點：摸御神牛 (長智慧)</li>
+                        <li class="detail-item">拍照：星巴克表參道店 (隈研吾設計)</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">太宰府市宰府4-7-1</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Dazaifu+Tenmangu" target="_blank" class="map-btn">📍 導航天滿宮</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">Must Eat</div>
+                <div class="card">
+                    <div class="card-title">🍓 必吃：天山 本店 (Tenzan)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">推薦：鬼瓦最中草莓大福</li>
+                        <li class="detail-item">特色：超大顆草莓，IG打卡名店</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">太宰府市宰府2-7-12</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Tenzan+Dazaifu" target="_blank" class="map-btn">📍 導航天山</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">Evening</div>
+                <div class="card">
+                    <div class="card-title">晚餐建議</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">選擇A：博多車站 (KITTE/JR City) 餐廳多</li>
+                        <li class="detail-item">選擇B：中洲屋台 (體驗熱鬧氣氛)</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="day4" class="day-content">
-        <div class="hero-card">
-            <div class="hero-img-container">
-                 <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Shopping" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                 <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">Shopping 🛍️</div>
-            </div>
-            <div class="day-header">
-                <div class="day-date">01/02 (四)</div>
-                <h2 class="day-title">福岡市區搶福袋 🛍️</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event">
-                    <span class="time">Morning</span>
-                    <div class="activity">隨意吃早餐</div>
-                </li>
-                <li class="event">
-                    <span class="time">Afternoon</span>
-                    <div class="activity">天神區逛街</div>
-                    <div class="details-box">百貨公司搶福袋、折扣季</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Tenjin+Shopping" target="_blank" class="btn"><i>📍</i> 導航天神</a>
-                </li>
-                <li class="event food">
-                    <span class="time">19:00</span>
-                    <div class="activity">晚餐：肉力屋</div>
-                    <div class="tag-row"><span class="tag">Taishu Horumon</span></div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Taishu+Horumon+Nikuryokuya+Imaizumi" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">01/02 (五)</div>
+            <h2 class="title">市區初売り購物 🛍️</h2>
         </div>
+        <ul class="timeline">
+            <li class="event">
+                <div class="time-badge">Morning</div>
+                <div class="card">
+                    <div class="card-title">天神 / 博多運河城 逛街</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">重點：日本百貨「初売り」(新年首賣/折扣)</li>
+                        <li class="detail-item">地點：岩田屋、Parco、博多運河城</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">岩田屋本店</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Iwataya+Headquarters" target="_blank" class="map-btn">📍 導航岩田屋</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">Snack</div>
+                <div class="card">
+                    <div class="card-title">🍓 伊都きんぐ (Itoking)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">地點：天神店 或 天神地下街</li>
+                        <li class="detail-item">必買：草莓銅鑼燒 (博多Amaou)、草莓蕨餅</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">中央区今泉1-22-21</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Itoking+Tenjin" target="_blank" class="map-btn">📍 導航伊都</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">19:00 (預約)</div>
+                <div class="card">
+                    <div class="card-title">晚餐：大衆ホルモン肉力屋 今泉店</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">平價好吃的內臟燒肉店</li>
+                        <li class="detail-item">晚餐後可步行至附近買獺祭梅酒</li>
+                    </ul>
+                    <div class="note-box">
+                        <strong>🍶 獺祭購買點：</strong>
+                        1. 獺祭 Store 福岡店 (岩田屋 B2F)<br>
+                        2. 獺祭天神 Store (路面店)
+                    </div>
+                    <div class="address-row">
+                        <span class="address-text">中央区今泉1-17-22 1F</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Taishu+Horumon+Nikuryokuya+Imaizumi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="day5" class="day-content">
-        <div class="hero-card">
-            <div class="hero-img-container">
-                <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Yufuin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">Yufuin ♨️</div>
-            </div>
-            <div class="day-header">
-                <div class="day-date">01/03 (五)</div>
-                <h2 class="day-title">前往由布院溫泉 ♨️</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event">
-                    <span class="time">Daytime</span>
-                    <div class="activity">移動日</div>
-                    <div class="details-box">太宰府 → 湯布院 → 別府 (視路況調整)</div>
-                </li>
-                <li class="event hotel">
-                    <span class="time">Check In</span>
-                    <div class="activity">Yufuin Lamp no Yado</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Yufuin+Lamp+no+Yado" target="_blank" class="btn hotel"><i>📍</i> 導航飯店</a>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">01/03 (六)</div>
+            <h2 class="title">出發由布院 ♨️</h2>
         </div>
+        <ul class="timeline">
+            <li class="event">
+                <div class="time-badge">09:30</div>
+                <div class="card">
+                    <div class="card-title">寄放行李</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">首選：JR 博多站內置物櫃 (較順路)</li>
+                        <li class="detail-item">備案：7-11 博多站前朝日大樓店 (需預約 Ecbo Cloak)</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">JR博多站</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Hakata+Station" target="_blank" class="map-btn">📍 導航車站</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event train">
+                <div class="time-badge">10:11 - 12:20</div>
+                <div class="card">
+                    <div class="card-title">搭乘：由布院之森 3號</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><span class="tag info">座位</span> Car 4, 8C, 8D</li>
+                        <li class="detail-item"><span class="tag important">午餐</span> 取餐碼：yufuinnomori0032</li>
+                        <li class="detail-item">取餐時間：10:30 (餐車櫃台)</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">12:30 - 15:30</div>
+                <div class="card">
+                    <div class="card-title">由布院散策</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><strong>湯之坪街道</strong>：草莓糖葫蘆、B-speak蛋糕捲</li>
+                        <li class="detail-item"><strong>Floral Village</strong>：童話村拍照</li>
+                        <li class="detail-item"><strong>金鱗湖</strong>：湖光山色</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">湯布院町川上1503-3</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Floral+Village" target="_blank" class="map-btn">📍 導航童話村</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event hotel">
+                <div class="time-badge">16:00 Check-in</div>
+                <div class="card">
+                    <div class="card-title">Yufuin Lamp no Yado</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">享受溫泉與日式氛圍</li>
+                        <li class="detail-item">地址：大分県由布市湯布院町川上3639-1</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">Lamp no Yado</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Lamp+no+Yado" target="_blank" class="map-btn">📍 導航飯店</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="day6" class="day-content">
-        <div class="hero-card">
-             <div class="hero-img-container">
-                <img src="https://images.unsplash.com/photo-1580013759032-c96505e24c1f?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Ramen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #fa709a 0%, #fee140 100%);">Ramen 🍜</div>
-             </div>
-            <div class="day-header">
-                <div class="day-date">01/04 (六)</div>
-                <h2 class="day-title">由布院之森回福岡 🚂</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event">
-                    <span class="time">Daytime</span>
-                    <div class="activity">搭乘由布院之森</div>
-                </li>
-                <li class="event hotel">
-                    <span class="time">Evening</span>
-                    <div class="activity">KOKO Hotel 福岡天神</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="btn hotel"><i>📍</i> 導航飯店</a>
-                </li>
-                <li class="event food">
-                    <span class="time">20:00</span>
-                    <div class="activity">晚餐：かわ屋 (雞皮)</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Kawaya+Imaizumi" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">01/04 (日)</div>
+            <h2 class="title">由布院深度遊 & 回福岡 🚂</h2>
         </div>
+        <ul class="timeline">
+            <li class="event">
+                <div class="time-badge">08:00</div>
+                <div class="card">
+                    <div class="card-title">晨霧金鱗湖</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">早起散步，冬天才有的夢幻朝霧景色。</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">金鱗湖</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kinrin+Lake" target="_blank" class="map-btn">📍 導航金鱗湖</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">10:00</div>
+                <div class="card">
+                    <div class="card-title">深度遊推薦</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">1. COMICO ART MUSEUM (隈研吾設計)</li>
+                        <li class="detail-item">2. 史努比茶屋 (Snoopy Cha-ya)</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">12:00</div>
+                <div class="card">
+                    <div class="card-title">午餐：豐後牛料理</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">推薦A：由布まぶし 心 (釜飯，需排隊)</li>
+                        <li class="detail-item">推薦B：焼肉 萬野</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event train">
+                <div class="time-badge">15:56 - 18:00</div>
+                <div class="card">
+                    <div class="card-title">回程：由布院之森 4號</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><span class="tag info">座位</span> Car 3, 11A, 11B</li>
+                        <li class="detail-item">18:00 抵達博多站，領回寄放行李</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event hotel">
+                <div class="time-badge">19:00 Check-in</div>
+                <div class="card">
+                    <div class="card-title">KOKO Hotel 福岡天神</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">地點便利，位於今泉/天神區域</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">中央区今泉1-22-14</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="map-btn">📍 導航飯店</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">20:00 (預約)</div>
+                <div class="card">
+                    <div class="card-title">晚餐：かわ屋 今泉店</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">福岡名物：雞皮串燒</li>
+                        <li class="detail-item">建議一次點 10 串起跳</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">中央区今泉1-21-2</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kawaya+Imaizumi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div id="day7" class="day-content">
-        <div class="hero-card">
-            <div class="hero-img-container">
-                 <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80" class="hero-img" alt="Back Home" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                 <div class="hero-fallback" style="display:none; background:linear-gradient(135deg, #30cfd0 0%, #330867 100%);">Home Sweet Home 🏠</div>
-            </div>
-            <div class="day-header">
-                <div class="day-date">01/05 (日)</div>
-                <h2 class="day-title">回家囉 🏠</h2>
-            </div>
-            <ul class="timeline">
-                <li class="event food">
-                    <span class="time">12:00</span>
-                    <div class="activity">午餐：Robatano Itookashi</div>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=Robatano+Itookashi" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
-                </li>
-                <li class="event flight">
-                    <span class="time">20:35 - 22:20</span>
-                    <div class="activity">FUK ➝ TPE (CI 0117)</div>
-                    <div class="tag-row"><span class="tag alert">福岡機場 T1</span></div>
-                </li>
-            </ul>
+        <div class="date-header">
+            <div class="date">01/05 (一)</div>
+            <h2 class="title">六本松 & 返台 🏠</h2>
         </div>
-    </div>
-    
-    <div class="trip-summary">
-        Have a nice trip! 🧳
+        <ul class="timeline">
+            <li class="event food">
+                <div class="time-badge">09:30 (動線優化)</div>
+                <div class="card">
+                    <div class="card-title">The Full Full Hakata</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><span class="tag important">重點</span> 退房後先來買「明太子麵包」。</li>
+                        <li class="detail-item">原因：下午容易完售，買完帶去博多站寄放。</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">博多区祇園町9-3</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Full+Full+Hakata" target="_blank" class="map-btn">📍 導航麵包</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">10:30</div>
+                <div class="card">
+                    <div class="card-title">寄放行李 (博多站)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">將大行李 + 麵包 一起寄放在博多站置物櫃。</li>
+                        <li class="detail-item">寄完後，搭乘地鐵七隈線前往「六本松」。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">12:00 (預約)</div>
+                <div class="card">
+                    <div class="card-title">午餐：Robatano Itookashi (炉端 百式)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">高評價爐端燒料理</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">中央区六本松2-3-13</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Robatano+Itookashi" target="_blank" class="map-btn">📍 導航餐廳</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event">
+                <div class="time-badge">13:30</div>
+                <div class="card">
+                    <div class="card-title">六本松散策</div>
+                    <ul class="detail-list">
+                        <li class="detail-item"><strong>六本松 421</strong>：蔦屋書店、星巴克</li>
+                        <li class="detail-item"><strong>AMAM DACOTAN</strong>：超人氣網紅麵包 (若有時間排隊)</li>
+                    </ul>
+                    <div class="address-row">
+                        <span class="address-text">中央区六本松4-2-1</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Ropponmatsu+421" target="_blank" class="map-btn">📍 導航書店</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="event food">
+                <div class="time-badge">16:30</div>
+                <div class="card">
+                    <div class="card-title">最後衝刺 & 領行李</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">地點：博多車站內</li>
+                        <li class="detail-item">必買：努努雞 (冷炸雞)、筑紫麻糬</li>
+                        <li class="detail-item">領完行李後，搭計程車前往機場 (約20分)。</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="event flight">
+                <div class="time-badge">20:35 - 22:20</div>
+                <div class="card">
+                    <div class="card-title">FUK ➝ TPE (CI 0117)</div>
+                    <ul class="detail-list">
+                        <li class="detail-item">航廈：福岡機場 國際線航廈 (T1)</li>
+                        <li class="detail-item">建議 18:30 前抵達辦理登機。</li>
+                    </ul>
+                    <div class="note-box">
+                        <strong>✈️ Have a safe trip!</strong>
+                        期待下次的旅程！
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 
 </div>
 
 <script>
+    // Tab Switching Logic
     function switchDay(dayNum) {
         document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.day-tab').forEach(el => el.classList.remove('active'));
@@ -523,6 +835,26 @@
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Countdown Logic
+    function updateCountdown() {
+        const tripStart = new Date("2025-12-30T14:15:00").getTime();
+        const now = new Date().getTime();
+        const distance = tripStart - now;
+
+        if (distance < 0) {
+            document.getElementById("countdown").innerHTML = "旅程進行中 / 已結束";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        
+        document.getElementById("countdown").innerHTML = `⏰ 倒數 ${days} 天 ${hours} 小時`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); 
 </script>
 
 </body>
