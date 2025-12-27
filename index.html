@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福岡跨年之旅 2025-26</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #e74c3c;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --timeline: #3498db;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .day-date {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--timeline);
+            text-transform: uppercase;
+        }
+
+        .day-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 5px 0 0 0;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 6px;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .event {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .event:last-child {
+            margin-bottom: 0;
+        }
+
+        .event:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--timeline);
+            border: 2px solid var(--card-bg);
+        }
+
+        .event.hotel:before { background: #9b59b6; }
+        .event.flight:before { background: #e67e22; }
+        .event.food:before { background: #e74c3c; }
+
+        .time {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .activity {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .details {
+            font-size: 0.9rem;
+            color: #555;
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        .location-btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 12px;
+            background-color: var(--timeline);
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+
+        .location-btn.hotel { background-color: #9b59b6; }
+        .location-btn.food { background-color: #e74c3c; }
+
+        .note {
+            font-size: 0.8rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 4px;
+        }
+        
+        a { color: var(--timeline); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>福岡跨年之旅 🇯🇵</h1>
+    <div class="subtitle">2025/12/30 - 2026/01/05</div>
+</header>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2025/12/30 (一)</div>
+            <h2 class="day-title">Day 1 出發福岡 ✈️</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event flight">
+            <span class="time">14:15 - 17:30</span>
+            <div class="activity">TPE ➝ FUK (CI 0128)</div>
+            <div class="details">預計 18:30 拿完行李</div>
+        </li>
+        <li class="event">
+            <span class="time">18:30 - 19:00</span>
+            <div class="activity">前往住宿</div>
+            <div class="details">計程車約15分 / 地鐵機場線約15分</div>
+        </li>
+        <li class="event hotel">
+            <span class="time">19:00</span>
+            <div class="activity">Check In: Prince Smart Inn Hakata</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Prince+Smart+Inn+Hakata" target="_blank" class="location-btn hotel">📍 導航到飯店</a>
+            <div class="details">地址：日本〒812-0011 Fukuoka, Hakata Ward, Hakata Ekimae, 3 Chome−21−4</div>
+        </li>
+        <li class="event food">
+            <span class="time">20:00 (預約)</span>
+            <div class="activity">晚餐：Nikuya Nikuichi</div>
+            <div class="note">走路約12分，搭車4分</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Nikuya+Nikuichi+Hakataten" target="_blank" class="location-btn food">📍 導航到餐廳</a>
+            <div class="details">吃90分鐘，約21:30結束。</div>
+        </li>
+    </ul>
+</div>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2025/12/31 (二)</div>
+            <h2 class="day-title">Day 2 豪斯登堡跨年 🎆</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event">
+            <span class="time">10:31 - 12:23</span>
+            <div class="activity">移動：前往豪斯登堡</div>
+            <div class="details">搭乘 JR綠、豪斯登堡號 (約2小時)</div>
+        </li>
+        <li class="event">
+            <span class="time">12:30 - 19:50</span>
+            <div class="activity">豪斯登堡一日遊</div>
+        </li>
+        <li class="event">
+            <span class="time">19:59 - 21:50</span>
+            <div class="activity">回程巴士</div>
+            <div class="details">返回博多/天神區域</div>
+        </li>
+        <li class="event">
+            <span class="time">Late Night</span>
+            <div class="activity">跨年參拜</div>
+            <div class="details">櫛田神社、萬行寺、住吉神社</div>
+            <div class="note"><a href="https://yunamirulife.blogspot.com/2020/12/blog-post_24.html" target="_blank">🔗 參考網誌連結</a></div>
+        </li>
+    </ul>
+</div>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2026/01/01 (三)</div>
+            <h2 class="day-title">Day 3 太宰府新年 🙏</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event">
+            <span class="time">Morning</span>
+            <div class="activity">睡到飽 & 早餐</div>
+        </li>
+        <li class="event">
+            <span class="time">Afternoon</span>
+            <div class="activity">太宰府天滿宮</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Dazaifu+Tenmangu" target="_blank" class="location-btn">📍 導航到太宰府</a>
+        </li>
+    </ul>
+</div>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2026/01/02 (四)</div>
+            <h2 class="day-title">Day 4 市區逛街 🛍️</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event">
+            <span class="time">Morning</span>
+            <div class="activity">早餐：隨意吃</div>
+        </li>
+        <li class="event">
+            <span class="time">Afternoon</span>
+            <div class="activity">天神逛街搶福袋/折扣</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Tenjin+Station" target="_blank" class="location-btn">📍 導航到天神</a>
+        </li>
+        <li class="event food">
+            <span class="time">19:00</span>
+            <div class="activity">晚餐：Taishu Horumon Nikuryokuya</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Taishu+Horumon+Nikuryokuya+Imaizumi+Ten" target="_blank" class="location-btn food">📍 導航到餐廳</a>
+        </li>
+    </ul>
+</div>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2026/01/03 (五)</div>
+            <h2 class="day-title">Day 5 前往由布院 ♨️</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event">
+            <span class="time">Morning/Noon</span>
+            <div class="activity">移動：太宰府 → 湯布院 → 別府</div>
+            <div class="note">視當天交通狀況調整順序</div>
+        </li>
+        <li class="event hotel">
+            <span class="time">Check In</span>
+            <div class="activity">住宿：Yufuin Lamp no Yado</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Lamp+no+Yado" target="_blank" class="location-btn hotel">📍 導航到飯店</a>
+            <div class="details">地址：3639-1 Yufuincho Kawakami, Yufu</div>
+        </li>
+    </ul>
+</div>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2026/01/04 (六)</div>
+            <h2 class="day-title">Day 6 由布院之森 🚂</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event">
+            <span class="time">Daytime</span>
+            <div class="activity">搭乘由布院之森回福岡</div>
+        </li>
+        <li class="event hotel">
+            <span class="time">Evening</span>
+            <div class="activity">住宿：KOKO Hotel 福岡天神</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="location-btn hotel">📍 導航到飯店</a>
+            <div class="details">地址：1 Chome−22−14 Imaizumi, Chuo Ward</div>
+        </li>
+        <li class="event food">
+            <span class="time">20:00</span>
+            <div class="activity">晚餐：かわ屋 今泉店</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kawaya+Imaizumi" target="_blank" class="location-btn food">📍 導航到餐廳</a>
+            <div class="details">名物雞皮串燒</div>
+        </li>
+    </ul>
+</div>
+
+<div class="day-card">
+    <div class="day-header">
+        <div>
+            <div class="day-date">2026/01/05 (日)</div>
+            <h2 class="day-title">Day 7 回家囉 🏠</h2>
+        </div>
+    </div>
+    <ul class="timeline">
+        <li class="event food">
+            <span class="time">12:00</span>
+            <div class="activity">午餐：Robatano Itookashi</div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Robatano+Itookashi" target="_blank" class="location-btn food">📍 導航到餐廳</a>
+        </li>
+        <li class="event flight">
+            <span class="time">20:35 - 22:20</span>
+            <div class="activity">FUK ➝ TPE (CI 0117)</div>
+            <div class="details">福岡機場 T1 出發</div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
