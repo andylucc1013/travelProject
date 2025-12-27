@@ -2,15 +2,16 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>福岡跨年之旅 2025-26</title>
     <style>
         :root {
             --primary: #2c3e50;
-            --accent: #e74c3c;
-            --bg: #f4f7f6;
+            --accent: #FF5E57; /* 更有活力的紅 */
+            --bg: #F2F4F8;
             --card-bg: #ffffff;
-            --timeline: #3498db;
+            --timeline: #575fcf; /* 質感藍紫色 */
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
         body {
@@ -18,65 +19,124 @@
             background-color: var(--bg);
             color: var(--primary);
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 0;
+            padding-bottom: 80px; /* 預留底部空間 */
+            -webkit-font-smoothing: antialiased;
         }
 
-        header {
+        /* Fixed Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 10px 0;
+        }
+
+        .header-title {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #ddd;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 8px;
             color: var(--primary);
         }
 
-        .subtitle {
-            color: #7f8c8d;
+        .days-nav {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px;
+            gap: 10px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .days-nav::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+        .day-tab {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 0.9rem;
-            margin-top: 5px;
+            font-weight: 600;
+            background: #eee;
+            color: #888;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .day-card {
+        .day-tab.active {
+            background: var(--timeline);
+            color: white;
+            box-shadow: 0 4px 12px rgba(87, 95, 207, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Main Content Area */
+        .container {
+            margin-top: 100px; /* Space for fixed header */
+            padding: 0 16px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Day Content Sections */
+        .day-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .day-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Image Card */
+        .hero-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
         }
 
         .day-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
         }
 
         .day-date {
             font-size: 0.85rem;
-            font-weight: bold;
-            color: var(--timeline);
+            font-weight: 700;
+            color: var(--accent);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .day-title {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 800;
             margin: 5px 0 0 0;
+            line-height: 1.3;
         }
 
         /* Timeline Styles */
         .timeline {
             list-style: none;
-            padding: 0;
+            padding: 20px;
             margin: 0;
             position: relative;
         }
@@ -84,274 +144,357 @@
         .timeline:before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 6px;
+            top: 25px;
+            bottom: 25px;
+            left: 28px;
             width: 2px;
-            background: #e0e0e0;
+            background: #eef2f5;
         }
 
         .event {
             position: relative;
-            padding-left: 25px;
-            margin-bottom: 20px;
+            padding-left: 45px;
+            margin-bottom: 28px;
         }
 
-        .event:last-child {
-            margin-bottom: 0;
-        }
+        .event:last-child { margin-bottom: 0; }
 
         .event:before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 8px;
-            width: 14px;
-            height: 14px;
+            left: 21px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            background: var(--timeline);
-            border: 2px solid var(--card-bg);
+            background: var(--card-bg);
+            border: 3px solid var(--timeline);
+            z-index: 2;
         }
 
-        .event.hotel:before { background: #9b59b6; }
-        .event.flight:before { background: #e67e22; }
-        .event.food:before { background: #e74c3c; }
+        .event.hotel:before { border-color: #be2edd; } /* Purple */
+        .event.flight:before { border-color: #ffbe76; } /* Orange */
+        .event.food:before { border-color: #ff5e57; } /* Red */
 
         .time {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            font-weight: 600;
+            font-size: 0.8rem;
+            color: #95a5a6;
+            font-weight: 700;
             display: block;
-            margin-bottom: 2px;
-        }
-
-        .activity {
-            font-weight: bold;
-            font-size: 1rem;
             margin-bottom: 4px;
         }
 
-        .details {
-            font-size: 0.9rem;
-            color: #555;
-            background: #f8f9fa;
-            padding: 8px;
-            border-radius: 8px;
-            margin-top: 5px;
+        .activity {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: #2d3436;
         }
 
-        .location-btn {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 6px 12px;
+        .tag-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #f1f2f6;
+            color: #57606f;
+            font-weight: 500;
+        }
+        
+        .tag.alert { background: #ffeaa7; color: #d35400; }
+
+        .details-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #636e72;
+            border-left: 3px solid #ddd;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
+            padding: 8px 16px;
             background-color: var(--timeline);
             color: white;
             text-decoration: none;
-            font-size: 0.85rem;
-            border-radius: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: background 0.2s;
+            font-size: 0.9rem;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(87, 95, 207, 0.3);
+            transition: transform 0.2s;
         }
+        .btn:active { transform: scale(0.96); }
+        .btn i { margin-right: 6px; font-style: normal; }
 
-        .location-btn.hotel { background-color: #9b59b6; }
-        .location-btn.food { background-color: #e74c3c; }
+        .btn.hotel { background-color: #be2edd; box-shadow: 0 4px 10px rgba(190, 46, 221, 0.3); }
+        .btn.food { background-color: #ff5e57; box-shadow: 0 4px 10px rgba(255, 94, 87, 0.3); }
 
-        .note {
+        /* Footer Info */
+        .trip-summary {
+            text-align: center;
+            margin-top: 30px;
             font-size: 0.8rem;
-            color: #888;
-            font-style: italic;
-            margin-top: 4px;
+            color: #b2bec3;
         }
-        
-        a { color: var(--timeline); text-decoration: none; }
+
     </style>
 </head>
 <body>
 
-<header>
-    <h1>福岡跨年之旅 🇯🇵</h1>
-    <div class="subtitle">2025/12/30 - 2026/01/05</div>
-</header>
-
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2025/12/30 (一)</div>
-            <h2 class="day-title">Day 1 出發福岡 ✈️</h2>
-        </div>
+<div class="nav-container">
+    <div class="header-title">🇯🇵 福岡跨年 2025</div>
+    <div class="days-nav">
+        <button class="day-tab active" onclick="switchDay(1)">Day 1</button>
+        <button class="day-tab" onclick="switchDay(2)">Day 2</button>
+        <button class="day-tab" onclick="switchDay(3)">Day 3</button>
+        <button class="day-tab" onclick="switchDay(4)">Day 4</button>
+        <button class="day-tab" onclick="switchDay(5)">Day 5</button>
+        <button class="day-tab" onclick="switchDay(6)">Day 6</button>
+        <button class="day-tab" onclick="switchDay(7)">Day 7</button>
     </div>
-    <ul class="timeline">
-        <li class="event flight">
-            <span class="time">14:15 - 17:30</span>
-            <div class="activity">TPE ➝ FUK (CI 0128)</div>
-            <div class="details">預計 18:30 拿完行李</div>
-        </li>
-        <li class="event">
-            <span class="time">18:30 - 19:00</span>
-            <div class="activity">前往住宿</div>
-            <div class="details">計程車約15分 / 地鐵機場線約15分</div>
-        </li>
-        <li class="event hotel">
-            <span class="time">19:00</span>
-            <div class="activity">Check In: Prince Smart Inn Hakata</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Prince+Smart+Inn+Hakata" target="_blank" class="location-btn hotel">📍 導航到飯店</a>
-            <div class="details">地址：日本〒812-0011 Fukuoka, Hakata Ward, Hakata Ekimae, 3 Chome−21−4</div>
-        </li>
-        <li class="event food">
-            <span class="time">20:00 (預約)</span>
-            <div class="activity">晚餐：Nikuya Nikuichi</div>
-            <div class="note">走路約12分，搭車4分</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Nikuya+Nikuichi+Hakataten" target="_blank" class="location-btn food">📍 導航到餐廳</a>
-            <div class="details">吃90分鐘，約21:30結束。</div>
-        </li>
-    </ul>
 </div>
 
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2025/12/31 (二)</div>
-            <h2 class="day-title">Day 2 豪斯登堡跨年 🎆</h2>
+<div class="container">
+
+    <div id="day1" class="day-content active">
+        <div class="hero-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Fukuoka_Airport_-_Terminal_2_-_01.JPG/800px-Fukuoka_Airport_-_Terminal_2_-_01.JPG" class="hero-img" alt="Fukuoka Airport">
+            <div class="day-header">
+                <div class="day-date">12/30 (一)</div>
+                <h2 class="day-title">出發福岡 ✈️</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event flight">
+                    <span class="time">14:15 - 17:30</span>
+                    <div class="activity">TPE ➝ FUK (CI 0128)</div>
+                    <div class="tag-row">
+                        <span class="tag alert">預計 18:30 取完行李</span>
+                    </div>
+                </li>
+                <li class="event">
+                    <span class="time">18:30 - 19:00</span>
+                    <div class="activity">前往博多住宿</div>
+                    <div class="details-box">
+                        🚕 計程車約 15 分<br>
+                        🚇 地鐵機場線約 15 分
+                    </div>
+                </li>
+                <li class="event hotel">
+                    <span class="time">19:00</span>
+                    <div class="activity">Prince Smart Inn Hakata</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Prince+Smart+Inn+Hakata" target="_blank" class="btn hotel"><i>📍</i> 導航飯店</a>
+                </li>
+                <li class="event food">
+                    <span class="time">20:00 (預約)</span>
+                    <div class="activity">Nikuya Nikuichi 燒肉</div>
+                    <div class="tag-row"><span class="tag">走路12分</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nikuya+Nikuichi+Hakataten" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <ul class="timeline">
-        <li class="event">
-            <span class="time">10:31 - 12:23</span>
-            <div class="activity">移動：前往豪斯登堡</div>
-            <div class="details">搭乘 JR綠、豪斯登堡號 (約2小時)</div>
-        </li>
-        <li class="event">
-            <span class="time">12:30 - 19:50</span>
-            <div class="activity">豪斯登堡一日遊</div>
-        </li>
-        <li class="event">
-            <span class="time">19:59 - 21:50</span>
-            <div class="activity">回程巴士</div>
-            <div class="details">返回博多/天神區域</div>
-        </li>
-        <li class="event">
-            <span class="time">Late Night</span>
-            <div class="activity">跨年參拜</div>
-            <div class="details">櫛田神社、萬行寺、住吉神社</div>
-            <div class="note"><a href="https://yunamirulife.blogspot.com/2020/12/blog-post_24.html" target="_blank">🔗 參考網誌連結</a></div>
-        </li>
-    </ul>
+
+    <div id="day2" class="day-content">
+        <div class="hero-card">
+            <div style="height:150px; background:linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.5rem;">Huis Ten Bosch</div>
+            <div class="day-header">
+                <div class="day-date">12/31 (二)</div>
+                <h2 class="day-title">豪斯登堡跨年 🎆</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event">
+                    <span class="time">10:31 - 12:23</span>
+                    <div class="activity">前往豪斯登堡</div>
+                    <div class="details-box">JR綠 / 豪斯登堡號 (約2hr)</div>
+                </li>
+                <li class="event">
+                    <span class="time">12:30 - 19:50</span>
+                    <div class="activity">園區一日遊</div>
+                </li>
+                <li class="event">
+                    <span class="time">19:59 - 21:50</span>
+                    <div class="activity">回程巴士</div>
+                    <div class="tag-row"><span class="tag">回博多/天神</span></div>
+                </li>
+                <li class="event">
+                    <span class="time">Late Night</span>
+                    <div class="activity">跨年參拜 🙏</div>
+                    <div class="details-box">櫛田神社、萬行寺、住吉神社</div>
+                    <a href="https://yunamirulife.blogspot.com/2020/12/blog-post_24.html" target="_blank" class="btn"><i>🔗</i> 參考網誌</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="day3" class="day-content">
+        <div class="hero-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Dazaifu_Tenmangu_Shrine_Honden_%28Main_Prayer_Hall%29.jpg/800px-Dazaifu_Tenmangu_Shrine_Honden_%28Main_Prayer_Hall%29.jpg" class="hero-img" alt="Dazaifu">
+            <div class="day-header">
+                <div class="day-date">01/01 (三)</div>
+                <h2 class="day-title">太宰府新年參拜 ⛩️</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event">
+                    <span class="time">Morning</span>
+                    <div class="activity">睡飽吃早餐</div>
+                </li>
+                <li class="event">
+                    <span class="time">Afternoon</span>
+                    <div class="activity">太宰府天滿宮</div>
+                    <div class="details-box">新年人潮眾多，注意保暖</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Dazaifu+Tenmangu" target="_blank" class="btn"><i>📍</i> 導航太宰府</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="day4" class="day-content">
+        <div class="hero-card">
+             <div style="height:150px; background:linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.5rem;">Shopping Day</div>
+            <div class="day-header">
+                <div class="day-date">01/02 (四)</div>
+                <h2 class="day-title">福岡市區搶福袋 🛍️</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event">
+                    <span class="time">Morning</span>
+                    <div class="activity">隨意吃早餐</div>
+                </li>
+                <li class="event">
+                    <span class="time">Afternoon</span>
+                    <div class="activity">天神區逛街</div>
+                    <div class="details-box">百貨公司搶福袋、折扣季</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Tenjin+Fukuoka" target="_blank" class="btn"><i>📍</i> 導航天神</a>
+                </li>
+                <li class="event food">
+                    <span class="time">19:00</span>
+                    <div class="activity">晚餐：肉力屋</div>
+                    <div class="tag-row"><span class="tag">Taishu Horumon</span></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Taishu+Horumon+Nikuryokuya+Imaizumi" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="day5" class="day-content">
+        <div class="hero-card">
+            <div style="height:150px; background:linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; font-size:1.5rem; text-shadow:0 2px 4px rgba(0,0,0,0.1);">Yufuin Onsen</div>
+            <div class="day-header">
+                <div class="day-date">01/03 (五)</div>
+                <h2 class="day-title">前往由布院溫泉 ♨️</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event">
+                    <span class="time">Daytime</span>
+                    <div class="activity">移動日</div>
+                    <div class="details-box">太宰府 → 湯布院 → 別府 (視路況調整)</div>
+                </li>
+                <li class="event hotel">
+                    <span class="time">Check In</span>
+                    <div class="activity">Yufuin Lamp no Yado</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Lamp+no+Yado" target="_blank" class="btn hotel"><i>📍</i> 導航飯店</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="day6" class="day-content">
+        <div class="hero-card">
+             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Hakata_ramen.JPG/800px-Hakata_ramen.JPG" class="hero-img" alt="Hakata Food">
+            <div class="day-header">
+                <div class="day-date">01/04 (六)</div>
+                <h2 class="day-title">由布院之森回福岡 🚂</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event">
+                    <span class="time">Daytime</span>
+                    <div class="activity">搭乘由布院之森</div>
+                </li>
+                <li class="event hotel">
+                    <span class="time">Evening</span>
+                    <div class="activity">KOKO Hotel 福岡天神</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="btn hotel"><i>📍</i> 導航飯店</a>
+                </li>
+                <li class="event food">
+                    <span class="time">20:00</span>
+                    <div class="activity">晚餐：かわ屋 (雞皮)</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Kawaya+Imaizumi" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="day7" class="day-content">
+        <div class="hero-card">
+            <div class="day-header">
+                <div class="day-date">01/05 (日)</div>
+                <h2 class="day-title">回家囉 🏠</h2>
+            </div>
+            <ul class="timeline">
+                <li class="event food">
+                    <span class="time">12:00</span>
+                    <div class="activity">午餐：Robatano Itookashi</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Robatano+Itookashi" target="_blank" class="btn food"><i>📍</i> 導航餐廳</a>
+                </li>
+                <li class="event flight">
+                    <span class="time">20:35 - 22:20</span>
+                    <div class="activity">FUK ➝ TPE (CI 0117)</div>
+                    <div class="tag-row"><span class="tag alert">福岡機場 T1</span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="trip-summary">
+        Have a nice trip! 🧳
+    </div>
+
 </div>
 
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2026/01/01 (三)</div>
-            <h2 class="day-title">Day 3 太宰府新年 🙏</h2>
-        </div>
-    </div>
-    <ul class="timeline">
-        <li class="event">
-            <span class="time">Morning</span>
-            <div class="activity">睡到飽 & 早餐</div>
-        </li>
-        <li class="event">
-            <span class="time">Afternoon</span>
-            <div class="activity">太宰府天滿宮</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Dazaifu+Tenmangu" target="_blank" class="location-btn">📍 導航到太宰府</a>
-        </li>
-    </ul>
-</div>
+<script>
+    function switchDay(dayNum) {
+        // 1. 隱藏所有內容
+        document.querySelectorAll('.day-content').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // 2. 移除所有 Tab 的 active 狀態
+        document.querySelectorAll('.day-tab').forEach(el => {
+            el.classList.remove('active');
+        });
 
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2026/01/02 (四)</div>
-            <h2 class="day-title">Day 4 市區逛街 🛍️</h2>
-        </div>
-    </div>
-    <ul class="timeline">
-        <li class="event">
-            <span class="time">Morning</span>
-            <div class="activity">早餐：隨意吃</div>
-        </li>
-        <li class="event">
-            <span class="time">Afternoon</span>
-            <div class="activity">天神逛街搶福袋/折扣</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Tenjin+Station" target="_blank" class="location-btn">📍 導航到天神</a>
-        </li>
-        <li class="event food">
-            <span class="time">19:00</span>
-            <div class="activity">晚餐：Taishu Horumon Nikuryokuya</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Taishu+Horumon+Nikuryokuya+Imaizumi+Ten" target="_blank" class="location-btn food">📍 導航到餐廳</a>
-        </li>
-    </ul>
-</div>
+        // 3. 顯示選中的內容
+        document.getElementById('day' + dayNum).classList.add('active');
+        
+        // 4. 設定選中的 Tab 為 active
+        // 這裡因為 buttons 是按順序排的，可以用索引，或是重新抓取點擊的元素
+        // 簡單方式：
+        const buttons = document.querySelectorAll('.day-tab');
+        if(buttons[dayNum-1]) {
+            buttons[dayNum-1].classList.add('active');
+            
+            // 自動捲動 Tab 讓選中的項目在中間 (增強手機體驗)
+            buttons[dayNum-1].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
+        }
 
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2026/01/03 (五)</div>
-            <h2 class="day-title">Day 5 前往由布院 ♨️</h2>
-        </div>
-    </div>
-    <ul class="timeline">
-        <li class="event">
-            <span class="time">Morning/Noon</span>
-            <div class="activity">移動：太宰府 → 湯布院 → 別府</div>
-            <div class="note">視當天交通狀況調整順序</div>
-        </li>
-        <li class="event hotel">
-            <span class="time">Check In</span>
-            <div class="activity">住宿：Yufuin Lamp no Yado</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Yufuin+Lamp+no+Yado" target="_blank" class="location-btn hotel">📍 導航到飯店</a>
-            <div class="details">地址：3639-1 Yufuincho Kawakami, Yufu</div>
-        </li>
-    </ul>
-</div>
-
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2026/01/04 (六)</div>
-            <h2 class="day-title">Day 6 由布院之森 🚂</h2>
-        </div>
-    </div>
-    <ul class="timeline">
-        <li class="event">
-            <span class="time">Daytime</span>
-            <div class="activity">搭乘由布院之森回福岡</div>
-        </li>
-        <li class="event hotel">
-            <span class="time">Evening</span>
-            <div class="activity">住宿：KOKO Hotel 福岡天神</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=KOKO+HOTEL+Fukuoka+Tenjin" target="_blank" class="location-btn hotel">📍 導航到飯店</a>
-            <div class="details">地址：1 Chome−22−14 Imaizumi, Chuo Ward</div>
-        </li>
-        <li class="event food">
-            <span class="time">20:00</span>
-            <div class="activity">晚餐：かわ屋 今泉店</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kawaya+Imaizumi" target="_blank" class="location-btn food">📍 導航到餐廳</a>
-            <div class="details">名物雞皮串燒</div>
-        </li>
-    </ul>
-</div>
-
-<div class="day-card">
-    <div class="day-header">
-        <div>
-            <div class="day-date">2026/01/05 (日)</div>
-            <h2 class="day-title">Day 7 回家囉 🏠</h2>
-        </div>
-    </div>
-    <ul class="timeline">
-        <li class="event food">
-            <span class="time">12:00</span>
-            <div class="activity">午餐：Robatano Itookashi</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Robatano+Itookashi" target="_blank" class="location-btn food">📍 導航到餐廳</a>
-        </li>
-        <li class="event flight">
-            <span class="time">20:35 - 22:20</span>
-            <div class="activity">FUK ➝ TPE (CI 0117)</div>
-            <div class="details">福岡機場 T1 出發</div>
-        </li>
-    </ul>
-</div>
+        // 5. 頁面回到最上方
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
 </body>
 </html>
