@@ -1,15 +1,15 @@
 :root {
-    --primary: #2c3e50;
-    --secondary: #596275;
-    --bg-color: #f5f6fa;
-    --card-bg: #ffffff;
+    --primary: #a52a2a; /* Muted Cranberry Red */
+    --secondary: #5a725a; /* Muted Forest Green */
+    --bg-color: #f0f0f0; /* Soft light grey */
+    --card-bg: #ffffff; 
     
-    --accent-blue: #3498db;
-    --accent-red: #e74c3c;
-    --accent-green: #27ae60;
-    --accent-gold: #f39c12;
+    --accent-blue: #87ceeb; /* Sky Blue (softer icy) */
+    --accent-red: #cd5c5c; /* IndianRed (softer red) */
+    --accent-green: #6b8e23; /* OliveDrab (more earthy green) */
+    --accent-gold: #daa520; /* Goldenrod (softer gold) */
     
-    --nav-bg: rgba(255, 255, 255, 0.98);
+    --nav-bg: rgba(255, 255, 255, 0.95); /* Slightly less opaque */
     --border-radius: 12px;
 }
 
@@ -18,8 +18,8 @@ body {
     margin: 0;
     padding: 0;
     padding-bottom: 120px;
-    background-color: var(--bg-color);
-    color: var(--primary);
+    background-color: #f8f8f8; /* Softer off-white */
+    color: var(--primary); 
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
@@ -31,9 +31,9 @@ body {
     left: 0;
     right: 0;
     background: var(--nav-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px); /* Slightly less blur */
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* Softer shadow */
     padding: 10px 0 5px 0;
 }
 
@@ -49,18 +49,18 @@ body {
 .countdown {
     text-align: center;
     font-size: 0.85rem;
-    color: var(--accent-blue);
+    color: var(--accent-red); 
     font-weight: 700;
     margin-bottom: 8px;
-    background: rgba(52, 152, 219, 0.1);
+    background: rgba(205, 92, 92, 0.1); /* Softer red background from accent-red */
     display: inline-block;
     padding: 4px 16px;
     border-radius: 20px;
     left: 50%;
     position: relative;
     transform: translateX(-50%);
-    font-variant-numeric: tabular-nums; /* 防止數字跳動時寬度改變 */
-    border: 1px solid rgba(52, 152, 219, 0.2);
+    font-variant-numeric: tabular-nums; 
+    border: 1px solid rgba(205, 92, 92, 0.2); /* Softer red border */
 }
 
 .days-nav {
@@ -79,16 +79,16 @@ body {
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
-    background: #dfe4ea;
-    color: #7f8c8d;
+    background: #e9ecef; /* Very light grey */
+    color: var(--secondary); 
     border: none;
     transition: all 0.2s ease;
 }
 
 .day-tab.active {
-    background: var(--primary);
+    background: var(--primary); 
     color: white;
-    box-shadow: 0 4px 8px rgba(44, 62, 80, 0.2);
+    box-shadow: 0 4px 6px rgba(165, 42, 42, 0.15); /* Softer shadow for primary red */
     transform: translateY(-1px);
 }
 
@@ -110,7 +110,7 @@ body {
 
 .date-header {
     margin-bottom: 24px;
-    border-left: 5px solid var(--accent-red);
+    border-left: 5px solid var(--accent-red); 
     padding-left: 12px;
 }
 .date-header .date { font-size: 0.9rem; color: var(--secondary); font-weight: 700; letter-spacing: 1px; }
@@ -130,7 +130,7 @@ body {
     bottom: 30px;
     left: 14px;
     width: 2px;
-    background: #dcdde1;
+    background: #ced4da; /* Slightly softer timeline line */
     z-index: 0;
 }
 
@@ -155,23 +155,23 @@ body {
 
 .event.flight:before { border-color: var(--accent-blue); }
 .event.food:before { border-color: var(--accent-red); }
-.event.hotel:before { border-color: #8e44ad; }
-.event.train:before { border-color: #27ae60; }
-.event.shopping:before { border-color: #f39c12; }
+.event.hotel:before { border-color: #ba8cba; } /* Softer purple */
+.event.train:before { border-color: var(--accent-green); }
+.event.shopping:before { border-color: var(--accent-gold); }
 
 .card {
     background: var(--card-bg);
     border-radius: var(--border-radius);
     padding: 18px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* Softer shadow */
+    border: 1px solid rgba(0,0,0,0.02); /* Softer border */
 }
 
 .time-badge {
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--secondary);
-    background: #f1f2f6;
+    color: var(--primary); 
+    background: #f8f9fa; 
     padding: 3px 8px;
     border-radius: 4px;
     display: inline-block;
@@ -204,14 +204,14 @@ body {
     content: '•';
     position: absolute;
     left: 0;
-    color: var(--accent-blue);
+    color: var(--primary); 
     font-weight: bold;
 }
 
 .address-row {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px dashed #eee;
+    border-top: 1px dashed #e9ecef; /* Softer border */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -220,12 +220,12 @@ body {
 
 .address-text {
     font-size: 0.8rem;
-    color: #7f8c8d;
+    color: #868e96; /* Slightly darker grey for better readability */
     flex: 1;
 }
 
 .map-btn {
-    background: var(--primary);
+    background: var(--primary); 
     color: white;
     text-decoration: none;
     font-size: 0.8rem;
@@ -235,18 +235,18 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Softer shadow */
 }
 .map-btn:active { transform: scale(0.95); }
 
 .note-box {
-    background: #fff8e1;
-    border-left: 4px solid var(--accent-gold);
+    background: #fffbe6; /* Softer light gold background */
+    border-left: 4px solid var(--accent-gold); 
     padding: 10px;
     margin-top: 12px;
     border-radius: 4px;
     font-size: 0.85rem;
-    color: #d35400;
+    color: #a07800; /* Softer dark gold text */
 }
 
 .note-box strong { display: block; margin-bottom: 4px; }
@@ -255,11 +255,11 @@ body {
     font-size: 0.75rem;
     padding: 2px 6px;
     border-radius: 4px;
-    background: #ecf0f1;
-    color: #7f8c8d;
+    background: #e9ecef; /* Very light grey */
+    color: #868e96; /* Darker grey for better readability */
     margin-right: 5px;
     font-weight: 600;
 }
-.tag.important { background: rgba(231, 76, 60, 0.1); color: var(--accent-red); }
-.tag.info { background: rgba(52, 152, 219, 0.1); color: var(--accent-blue); }
-.tag.ok { background: rgba(39, 174, 96, 0.1); color: var(--accent-green); }
+.tag.important { background: rgba(205, 92, 92, 0.1); color: var(--accent-red); } /* Softer red */
+.tag.info { background: rgba(135, 206, 235, 0.1); color: var(--accent-blue); } /* Softer blue */
+.tag.ok { background: rgba(107, 142, 35, 0.1); color: var(--accent-green); } /* Softer green */
